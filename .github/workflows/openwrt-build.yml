@@ -23,12 +23,7 @@ jobs:
           
       - name: Move uploaded config to .config
         run: |
-          CONFIG_FILE=$(find . -name "*.config" | head -n 1)
-          if [ -z "$CONFIG_FILE" ]; then
-            echo "No config file found!"
-            exit 1
-          fi
-          cp "$CONFIG_FILE" .config
+          cp *.config .config
 
       - name: Download feeds
         run: |
