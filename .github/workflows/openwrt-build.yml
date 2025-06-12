@@ -19,7 +19,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo -E apt-get -qq install -y gawk git gettext libssl-dev xsltproc zip git-core wget curl grep python2.7 python3 python3-pip libpython3-dev
-          sudo bash -c 'bash <(curl -fsSL https://github.com/281677160/common/raw/main/custom/ubuntu.sh)'
+          sudo bash -c 'bash <(curl -fsSL https://raw.githubusercontent.com/sjz123321/sjz-op-build-dep/refs/heads/main/install-dep.sh)'
           sudo timedatectl set-timezone Asia/Shanghai
           
       - name: Move uploaded config to .config
