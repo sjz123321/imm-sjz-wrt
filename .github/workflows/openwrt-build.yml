@@ -43,7 +43,7 @@ jobs:
           find dl -size -1024c -exec rm -f {} \;
       - name: Build OpenWrt (this may take a long time)
         run: |
-          make -j $(nproc)
+          make -j $(nproc) || make V=99
 
       - name: Upload bin directory
         uses: actions/upload-artifact@main
