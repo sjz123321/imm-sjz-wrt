@@ -35,6 +35,26 @@ jobs:
         run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+          ./scripts/feeds uninstall luci-app-passwall
+          ./scripts/feeds uninstall    chinadns-ng
+          ./scripts/feeds uninstall    dns2socks
+          ./scripts/feeds uninstall    geoview
+          ./scripts/feeds uninstall    hysteria
+          ./scripts/feeds uninstall    ipt2socks
+          ./scripts/feeds uninstall    microsocks
+          ./scripts/feeds uninstall    naiveproxy
+          ./scripts/feeds uninstall    shadowsocks-libev
+          ./scripts/feeds uninstall    shadowsocks-rust
+          ./scripts/feeds uninstall    shadowsocksr-libev
+          ./scripts/feeds uninstall    simple-obfs
+          ./scripts/feeds uninstall    sing-box
+          ./scripts/feeds uninstall    tcping
+          ./scripts/feeds uninstall    trojan-plus
+          ./scripts/feeds uninstall    tuic-client
+          ./scripts/feeds uninstall    v2ray-geodata
+          ./scripts/feeds uninstall    v2ray-plugin
+          ./scripts/feeds uninstall    xray-core
+          ./scripts/feeds uninstall    xray-plugin
       - name: Download dl
         id: package
         run: |
