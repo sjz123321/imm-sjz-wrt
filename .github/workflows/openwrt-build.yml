@@ -7,6 +7,18 @@ on:
     paths:
       - '**.config'
 
+permissions:
+  contents: write
+
+env:
+  DEVICE_NAME: "WY-820"
+  FILE_DATE: "DATE"
+  UPLOAD_BIN_DIR: "true"
+  UPLOAD_FIRMWARE: "true"
+  UPLOAD_RELEASE: "true"
+  UPLOAD_GOFILE: "false"
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -30,31 +42,15 @@ jobs:
       - name: Move uploaded config to .config
         run: |
           cp *.config .config
+          ${{ env.FILE_DATE }}=`date +%Y.%m.%d`
 
       - name: Download feeds
         run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          ./scripts/feeds uninstall luci-app-passwall
-          ./scripts/feeds uninstall    chinadns-ng
-          ./scripts/feeds uninstall    dns2socks
-          ./scripts/feeds uninstall    geoview
-          ./scripts/feeds uninstall    hysteria
-          ./scripts/feeds uninstall    ipt2socks
-          ./scripts/feeds uninstall    microsocks
-          ./scripts/feeds uninstall    naiveproxy
-          ./scripts/feeds uninstall    shadowsocks-libev
-          ./scripts/feeds uninstall    shadowsocks-rust
-          ./scripts/feeds uninstall    shadowsocksr-libev
-          ./scripts/feeds uninstall    simple-obfs
-          ./scripts/feeds uninstall    sing-box
-          ./scripts/feeds uninstall    tcping
-          ./scripts/feeds uninstall    trojan-plus
-          ./scripts/feeds uninstall    tuic-client
-          ./scripts/feeds uninstall    v2ray-geodata
-          ./scripts/feeds uninstall    v2ray-plugin
-          ./scripts/feeds uninstall    xray-core
-          ./scripts/feeds uninstall    xray-plugin
+          ./scripts/feeds uninstall luci-app-passwall   chinadns-ng dns2socks   geoview hysteria   ipt2socks    microsocks  naiveproxy \
+          shadowsocks-libev   shadowsocks-rust    shadowsocksr-libev    simple-obfs sing-box    tcping  trojan-plus tuic-client \
+          v2ray-geodata v2ray-plugin    xray-core   xray-plugin
       - name: Download dl
         id: package
         run: |
@@ -80,6 +76,7 @@ jobs:
           rm -rf packages
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
           echo "status=success" >> $GITHUB_OUTPUT
+          
 
       - name: Upload firmware directory
         uses: actions/upload-artifact@main
