@@ -49,7 +49,7 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           ./scripts/feeds uninstall luci-app-passwall   chinadns-ng dns2socks   geoview hysteria   ipt2socks    microsocks  naiveproxy \
-          shadowsocks-libev   shadowsocks-rust    shadowsocksr-libev    simple-obfs sing-box    tcping  trojan-plus tuic-client \
+          simple-obfs sing-box    tcping  trojan-plus tuic-client \
           v2ray-geodata v2ray-plugin    xray-core   xray-plugin
       - name: Download dl
         id: package
